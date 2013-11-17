@@ -15,12 +15,17 @@ array.reject {|num| n % num == 0}
 
 # => [19, 18, 17, 16, 15, 14, 13, 12, 11, 9, 8, 7, 6, 3] 
 
-array.each do |num|
-	
+#nested loop??
 
-# factors = []
-# array.each do |x|
-# 	factors << (2...x).reject {|num| x % num == 0}
-# end
+# Prime factorization is just
 
+2 ** 4
+3 ** 2
+5
+7
+11
+13
+17
+19
 
+# => 232792560
