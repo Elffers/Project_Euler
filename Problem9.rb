@@ -11,3 +11,7 @@ n = 997
 # If true, add the three numbers
 # if sum = 1000, return product of three numbers
 
+c = a ** 2 + b ** 2
+
+Math.sqrt(c).is_a? Fixnum
+

@@ -14,7 +14,7 @@
 
 n = 20000
 
-# works to find primes, but slow for large values of n
+# Succeeds in returning array of primes, but slow for large values of n
 primes = (2..n).to_a.delete_if do |x|
   (2..Math.sqrt(x)).to_a.select {|i| x % i == 0} != []
 end
