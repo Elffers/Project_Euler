@@ -26,4 +26,5 @@ products.max
 # n.each_char {|x| array.push x}
 # array
 
+require Enumerable?
 # # chunk??
