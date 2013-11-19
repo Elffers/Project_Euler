@@ -4,7 +4,19 @@
 
 n = 997
 
-(1..n)
+range = (3..993)
+
+products = range.map do |a|
+  range.map do |b|
+    b**2 + a **2
+  end
+end
+
+c_squared = products.flatten.find_all do |c|
+  (Math.sqrt(c)*10 % 10) == 0
+end
+
+
 
 # Iterate through a range and add the square of each number with squre of another (iterated)
 # Check if sum is a perfect square
