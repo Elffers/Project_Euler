@@ -27,3 +27,4 @@ c = a ** 2 + b ** 2
 
 Math.sqrt(c).is_a? Fixnum
 
+
