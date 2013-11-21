@@ -12,11 +12,13 @@
 #    if (j > i/j) : print i, " is prime"
 #    i = i + 1
 
-n = 20000
+n = 200000
 
 # Succeeds in returning array of primes, but slow for large values of n
 primes = (2..n).to_a.delete_if do |x|
-  (2..Math.sqrt(x)).to_a.select {|i| x % i == 0} != []
+  (2..Math.sqrt(x)).select {|i| x % i == 0} != []
 end
+
+#Returns the 10,001st element in the array primes
 
 primes[10000]
