@@ -9,17 +9,13 @@ array.reject {|num| n % num == 0}
 
 array = (2..n).to_a.reverse
 factors = []
-while array.length > 1
-  a, *b = *array
-  b.delete_if {|x| a % x == 0}
-  factors << a
-  array = b
-  puts b.inspect
-end
-
-
-
-
+# while array.length > 1
+#   a, *b = *array
+#   b.delete_if {|x| a % x == 0}
+#   factors << a
+#   array = b
+#   puts b.inspect
+# end
 
 # Returns array containing prime factors given n
 def factor(n)
@@ -35,6 +31,10 @@ def factor(n)
   array
 end
 
+array.map {|x| factor(x)}
+
+#=> [[2, 2, 5], [19], [2, 3, 3], [17], [2, 2, 2, 2], [3, 5], [2, 7], [13], 
+#   [2, 2, 3], [11], [2, 5], [3, 3], [2, 2, 2], [7], [2, 3], [5], [2, 2], [3], [2]] 
 
 
 2 ** 4
@@ -46,4 +46,3 @@ end
 17
 19
 
-20, 19, 
