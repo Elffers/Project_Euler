@@ -1,23 +1,41 @@
 # Problem 5
 # What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
-# n = 2
-# while n < 20
-# 	array = (2...n).to_a
-# 	array.keep_if {|num| n % num != 0}
-#   n = n + 1
-# end
-
 n = 20
 array = (2...n).to_a.reverse
 #Eliminates any factor of n from the array
 array.reject {|num| n % num == 0}
-
 # => [19, 18, 17, 16, 15, 14, 13, 12, 11, 9, 8, 7, 6, 3] 
 
-#nested loop??
+array = (2..n).to_a.reverse
+factors = []
+while array.length > 1
+  a, *b = *array
+  b.delete_if {|x| a % x == 0}
+  factors << a
+  array = b
+  puts b.inspect
+end
 
-# Prime factorization is just
+
+
+
+
+# Returns array containing prime factors given n
+def factor(n)
+  array = []
+  i = 2
+  while i <= n
+    while n % i == 0
+      array << i
+      n = n/i
+    end
+   i += 1
+  end
+  array
+end
+
+
 
 2 ** 4
 3 ** 2
@@ -28,4 +46,4 @@ array.reject {|num| n % num == 0}
 17
 19
 
-# => 232792560
+20, 19, 
