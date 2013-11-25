@@ -3,12 +3,8 @@
 
 
 #Returns Array of each line 
-file = File.readlines("Problem13.txt").map {|num| num = num.chop.to_i}
+file = File.readlines("Problem13.txt").map {|num| num = num.strip.to_i}
 
 bigsum = file.inject{|sum, num| sum+num}
-sum = 0
-file.each do |num|
-  sum = sum + num
-end
 
 bigsum.to_s.slice(0,10)
