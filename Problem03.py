@@ -13,16 +13,18 @@ def factors_of_n(x):
 
 # [71, 839, 1471, 6857, 59569, 104441, 486847]
 
-def factor(factor, number): return number % factor == 0
+def factor(factor, number):
+  return number % factor == 0
 
 def factors(x):
-  factors = []
-  for i in range(2, x):
-    if factor(i, x):
-      factors.append(i)
+  factors = [
+    i for i in range(2, x)
+    if factor (i, x)
+  ]
   return factors
 
-def prime(x): return len(factors(x)) == 0
+def prime(x):
+    return len(factors(x)) == 0
 
 primes_of_n = filter(prime, factors_of_n(n))
 
