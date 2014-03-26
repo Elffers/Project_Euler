@@ -10,8 +10,8 @@ while x + y < 4000000:
   y = fib_nums[-1]
   x = fib_nums[-2]
 
-def even(x): return x % 2 == 0
+def even(x): return (x % 2) == 0
 even_fibs = filter(even, fib_nums)
-def add(x,y): return x+y
+def add(x,y): return (x + y)
 reduce(add, even_fibs)
 
