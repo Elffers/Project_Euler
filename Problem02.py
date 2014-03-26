@@ -12,6 +12,5 @@ while x + y < 4000000:
 
 def even(x): return (x % 2) == 0
 even_fibs = filter(even, fib_nums)
-def add(x,y): return (x + y)
-reduce(add, even_fibs)
+sum(even_fibs)
 
