@@ -25,7 +25,6 @@ def chain(x)
   array.count
 end
 
-
 n = 1000000
 
 chains = (1..n).map do |x|

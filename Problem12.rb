@@ -24,30 +24,32 @@ end
 
 # Returns true or false for whether x is a triangular number
 def is_triangular(x)
-  ((Math.sqrt(8*x +1) -1)/2)*10 % 10 == 0
+  ((Math.sqrt(8*x + 1) -1)/2)*10 % 10 == 0
 end
-
 
 # x is nth triangular number
 # n = (Math.sqrt(8*x +1) -1)/2
 
+# Generates Array of all divisors of x
+def divisors(x)
+  divisors = (2..x/2).select do |factor|
+    x % factor == 0
+  end
+  divisors = [1] + divisors + [x]
+end
+
+def is_perfect(x)
+  divisors(x).reduce(:+)== 2*x
+end
+
 # Generates array containing the first n triangle numbers as elements
 
 def triangles(n)
-  array = []
-  (1..n).map do |n|
-    n*(n+1)/2
+  # array = []
+  (1..n).map do |x|
+    x*(x+1)/2
   end
 end 
-
-# Generates Array of all divisors of n
-def divisors(n)
-  divisors = (2..n/2).select do |factor|
-    n % factor == 0
-  end
-  divisors = divisors + [1, n]
-  divisors.sort
-end
 
 #forces a guess of nth triangle number
 triangles = triangles(1000)
