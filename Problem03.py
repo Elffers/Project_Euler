@@ -4,18 +4,26 @@
 from math import *
 
 n = 600851475143
-def factor(x): return n % x == 0
-factors = filter(factor,range(2..Math.sqrt(n))
+
+def factor_of_n(x): return n % x == 0
+
+# Only accounts for possible prime factors
+def factors_of_n(x):
+  return filter(factor_of_n, range(2, int(sqrt(x))))
 
 # [71, 839, 1471, 6857, 59569, 104441, 486847]
 
-factors.keep_if do |factor|
-  (2..Math.sqrt(factor)).select {|x| factor % x == 0} == []
-end
+def factor(factor, number): return number % factor == 0
 
-# Finds max of prime factors of n
+def factors(x):
+  factors = []
+  for i in range(2, x):
+    if factor(i, x):
+      factors.append(i)
+  return factors
 
-factors.max
+def prime(x): return len(factors(x)) == 0
 
+primes_of_n = filter(prime, factors_of_n(n))
 
-
+max(primes_of_n)
