@@ -11,12 +11,15 @@ while (x+y) < 4000000
   x = fib_nums[-2]
 end
 
-sum = 0
-fib_nums.each do |num| 
-  if num % 2 == 0 
-    sum += num
-  end
-end
+# sum = 0
+# fib_nums.each do |num|
+#   if num % 2 == 0
+#     sum += num
+#   end
+# end
 
-sum
+# sum
+
+even_fibs = fib_nums.select {|n| n.even?}
+even_fibs.reduce(:+)
 
