@@ -3,7 +3,7 @@
 # and the square of the sum.
 
 cento = range(1, 101)
-def square(x): return x * x
+def square(x): return x ** 2
 
 def sum_of_squares(args):
   squares = map(square, args)

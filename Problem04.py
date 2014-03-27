@@ -15,3 +15,10 @@ while a >= 100:
   a -= 1
 
 max(palindromes)
+
+max(
+   a*b
+   for a in range(100, 999)
+   for b in range(100, 999)
+   if palindrome(a*b)
+)

@@ -1,6 +1,7 @@
 # Problem 3
 # Find the largest prime factor of 600851475143
 
+from functools import partial
 from math import *
 
 n = 600851475143
@@ -15,6 +16,8 @@ def factors_of_n(x):
 
 def factor(factor, number):
   return number % factor == 0
+
+factor_of_n = partial(factor, number=600851475143)
 
 def factors(x):
   factors = [
