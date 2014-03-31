@@ -1,17 +1,6 @@
 # Problem 7
 # What is the 10 001st prime number?
 
-##Python code for finding prime numbers
-
-# i = 2
-# while(i < 100):
-#    j = 2
-#    while(j <= (i/j)):
-#       if not(i%j): break
-#       j = j + 1
-#    if (j > i/j) : print i, " is prime"
-#    i = i + 1
-
 n = 200000
 
 # Succeeds in returning array of primes, but slow for large values of n
