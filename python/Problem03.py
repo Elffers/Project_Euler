@@ -17,7 +17,7 @@ def factors_of_n(x):
 def factor(factor, number):
   return number % factor == 0
 
-factor_of_n = partial(factor, number=600851475143)
+# factor_of_n = partial(factor, number=600851475143)
 
 def factors(x):
   factors = [
@@ -26,8 +26,9 @@ def factors(x):
   ]
   return factors
 
+
 def prime(x):
-    return len(factors(x)) == 0
+    return not len(factors(x))
 
 primes_of_n = filter(prime, factors_of_n(n))
 
