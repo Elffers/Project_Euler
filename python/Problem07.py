@@ -12,5 +12,3 @@ def nth_prime(n):
        if (j > i/j) : primes.append(i)
        i = i + 1
     return primes.pop()
-
-# 104743

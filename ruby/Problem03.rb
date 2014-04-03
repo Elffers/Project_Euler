@@ -9,10 +9,7 @@ def factors(n)
 end
 
 x = factors(n)
-# [71, 839, 1471, 6857, 59569, 104441, 486847]
 
 primes = x.select { |factor| factors(factor).empty?}
 
 primes.max
-
-# 6857

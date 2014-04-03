@@ -15,7 +15,7 @@ def factors_of_n(x):
 # [71, 839, 1471, 6857, 59569, 104441, 486847]
 
 def factor(factor, number):
-  return number % factor == 0
+  return not number % factor
 
 # factor_of_n = partial(factor, number=600851475143)
 
@@ -25,7 +25,6 @@ def factors(x):
     if factor (i, x)
   ]
   return factors
-
 
 def prime(x):
     return not len(factors(x))
