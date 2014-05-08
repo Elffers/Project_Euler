@@ -1,61 +1,67 @@
 # Problem 11
-# What is the greatest product of four adjacent numbers in 
+# What is the greatest product of four adjacent numbers in
 # the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
+class MaxProduct
 
-horiz_products =[]
-vert_products = []
-diag_products = []
+  def parse
+    array = File.readlines("problem11grid.txt").map { |row| row.scan(/\w+/) }
+    array.map do |row|
+      row.map {|x| x.to_i }
+    end
+  end
 
-array = File.readlines("problem11grid.txt").map { |row| row.scan(/\w+/) }
+  def quad_product(array)
+    array.reduce(:*)
+  end
 
-# Creates Array ("numbers") of Arrays containing Fixnums of numbers from grid
-numbers = array.map do |row|
-  row.map {|x| x.to_i}
-end
+  # Expects array of arrays
+  def find_max(array)
+    max = 0
+    array.each do |subarray|
+      subarray.each_cons(4) do |chunk|
+        product = quad_product(chunk)
+        max = product if product > max
+      end
+    end
+    max
+  end
 
-# Generates products of products taken horizontally, puts them into horiz_products
-numbers.each do |row|
-  index = 0
-  while index < 20
-     product = row[index].to_i * row[index+1].to_i * row[index+2].to_i * row[index+3].to_i
-     horiz_products << product
-     index += 1
+  def horizontal_max
+    # => 48477312
+    find_max(parse)
+  end
+
+  def vertical_max
+    # =>51267216
+    find_max(parse.transpose)
+  end
+
+  def diagonal_max_right
+    find_max(shift_right.transpose)
+  end
+  # 70600674
+
+  def diagonal_max_left
+    find_max(shift_left.transpose)
+  end
+  # 32565456
+  def shift_left
+    shifted = []
+    parse.each_with_index do |x, i|
+      x.shift(i)
+      i.times { x.push(0) }
+      shifted.push(x)
+    end
+    shifted
+  end
+
+  def shift_right
+    shifted = []
+    parse.each_with_index do |x, i|
+      x.pop(i)
+      i.times { x.unshift(0) }
+      shifted.push(x)
+    end
+    shifted
   end
 end
-
-horiz_products.max
-# => 48477312 
-
-transposed = numbers.transpose
-
-transposed.each do |row|
-  index = 0
-  while index < 20
-     product = row[index].to_i * row[index+1].to_i * row[index+2].to_i * row[index+3].to_i
-     vert_products << product
-     index += 1
-  end
-end
-
-vert_products.max
-# =>51267216
-
-i = 0
-j = 0
-while i <20
-  product = numbers[i][0]*numbers[i+1][1]*numbers[i+2][2]*numbers[i+3][3]
-  diag_products << product
-  i += 1
-end
-
-#return an array of 4 numbers, starting with number at index i,j and going down and right
-def forward_quad(numbers, i, j)
-  quad1 = [numbers[i][j], numbers[i+1][j+1],numbers[i+2][j+2], numbers[i+3][j+3]]
-end
-
-# this doesn't work (does a wraparound)
-def backward_quad(numbers, i, j)
-  quad2 = [numbers[i][j], numbers[i-1][j-1],numbers[i-2][j-2], numbers[i-3][j-3]]
-end
-
-reversed = numbers.reverse
