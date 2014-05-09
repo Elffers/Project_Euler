@@ -18,7 +18,7 @@ class Year
   end
 
   def days_in
-
+    leap? ? 366:365
   end
 
   def leap?
