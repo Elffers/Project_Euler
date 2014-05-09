@@ -1,3 +1,5 @@
+# What is the first term in the Fibonacci sequence to contain 1000 digits?
+
 def fibonacci
   x = 1
   y = 1
