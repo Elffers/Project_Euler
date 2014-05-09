@@ -45,6 +45,7 @@ class MaxProduct
     find_max(shift_left.transpose)
   end
   # 32565456
+
   def shift_left
     shifted = []
     parse.each_with_index do |x, i|
