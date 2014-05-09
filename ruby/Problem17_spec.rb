@@ -3,6 +3,10 @@ require_relative 'Problem17'
 describe Counter do
   let(:counter){ Counter.new }
 
+  context 'count' do
+    it
+  end
+
   describe Counter::Number do
     let(:number){ Counter::Number.new(3)}
     context 'convert' do
@@ -48,6 +52,8 @@ describe Counter do
     context 'count' do
       it 'counts letters in converted word' do
         three = Counter::Number.new(3)
+        thirteen = Counter::Number.new(3)
+
         expect(three.count).to eq 5
       end
     end

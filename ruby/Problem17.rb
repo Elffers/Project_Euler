@@ -9,9 +9,14 @@ class Counter
   TEENS = %w[ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen]
   TENS = %w[twenty thirty forty fifty sixty seventy eighty ninety]
   HUNDRED = %w[hundred]
-  THOUSAND = %w[thousand]
 
-
+  def counter(n)
+    range = (1..n).to_a
+    range.map do |num|
+      num = Number.new(num)
+      num.count
+    end.reduce(:+)
+  end
 
   class Number
     def initialize(num)
@@ -51,6 +56,8 @@ class Counter
         two_digit(@digits)
       elsif @size == 3
         three_digit(@digits)
+      elsif @size == 4
+        "onethousand"
       end
     end
 
