@@ -11,6 +11,8 @@ class Counter
   HUNDRED = %w[hundred]
   THOUSAND = %w[thousand]
 
+
+
   class Number
     def initialize(num)
       @num = num
@@ -50,6 +52,10 @@ class Counter
       elsif @size == 3
         three_digit(@digits)
       end
+    end
+
+    def count
+      convert.size
     end
   end
 

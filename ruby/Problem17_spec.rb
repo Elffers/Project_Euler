@@ -44,5 +44,12 @@ describe Counter do
         expect(test4.convert).to eq "eighthundredandfiftyseven"
       end
     end
+
+    context 'count' do
+      it 'counts letters in converted word' do
+        three = Counter::Number.new(3)
+        expect(three.count).to eq 5
+      end
+    end
   end
 end
