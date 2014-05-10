@@ -32,11 +32,28 @@ describe Year do
       expect(year1.days_in).to eq 365
     end
   end
+
+  context 'first_days' do
+    it 'returns array of 1st day for each month' do
+      # ["Monday", "Thursday", "Thursday", "Sunday", "Tuesday", "Friday", "Sunday", "Wednesday", "Saturday", "Monday", "Thursday", "Saturday"]
+      expect(year1.first_days).to eq [1, 4, 4, 0, 2, 5, 0, 3, 6, 1, 4, 6]
+    end
+  end
   describe Year::Month do
+    let(:january) { Year::Month.new "January" }
+    let(:february) { Year::Month.new "February" }
+    let(:march){ Year::Month.new "March" }
+    let(:april){ Year::Month.new "April" }
+    let(:may){ Year::Month.new "May" }
+    let(:june) { Year::Month.new "June" }
+    let(:july) { Year::Month.new "July" }
+    let(:august) { Year::Month.new "August" }
+    let(:september) { Year::Month.new "September" }
+    let(:october) { Year::Month.new "October" }
+    let(:november) { Year::Month.new "November" }
+    let(:december) { Year::Month.new "December" }
+
     context 'days' do
-      let(:january) { Year::Month.new "January"}
-      let(:february) { Year::Month.new "February"}
-      let(:june) { Year::Month.new "June" }
 
       it 'returns 31 days for right months' do
         expect(january.days(2014)).to eq 31
@@ -49,6 +66,17 @@ describe Year do
       end
       it 'returns 29 days for February in non leap year' do
         expect(february.days(2012)).to eq 29
+      end
+    end
+
+    context 'first_day' do
+      xit 'returns day of first day of the month' do
+        expect(january.first_day("1900")).to eq "Monday"
+        expect(february.first_day("1900")).to eq "Thursday"
+        expect(march.first_day("1900")).to eq "Thursday"
+        expect(april.first_day("1900")).to eq "Saturday"
+        expect(may.first_day("1900")).to eq "Tuesday"
+        expect(june.first_day("1900")).to eq "Friday"
       end
     end
   end

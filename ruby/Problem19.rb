@@ -10,9 +10,23 @@
 # A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
 # How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
 
-DAYS = %w[0 1 2 3 4 5 6]
+DAYS = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
 LONG = %w[January March May July August October December]
 SHORT = %w[April June September November]
+MONTHS = %w[January February March April May June July August September October November December]
+NONLEAP_DISPLACEMENT = [3, 0, 3, 2, 3, 2, 3, 3, 2, 3, 2, 3]
+
+LEAP_DISPLACEMENT = [3, 1, 3, 2, 3, 2, 3, 3, 2, 3, 2, 3]
+
+# MONTHS.map do |month|
+#   if LONG.include? month
+#     31 % 7
+#   elsif SHORT.include? month
+#     30 % 7
+#   else
+#     29 % 7
+#   end
+# end
 
 class Year
 
@@ -26,6 +40,13 @@ class Year
 
   def leap?
     @current % 100 != 0 && @current % 4 == 0 || @current % 400 == 0
+  end
+
+  def first_days
+    if leap?
+
+    end
+
   end
 
   class Month
@@ -48,7 +69,6 @@ class Year
         end
       end
     end
-
   end
 end
 
