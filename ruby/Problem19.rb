@@ -11,8 +11,11 @@
 # How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
 
 DAYS = %w[0 1 2 3 4 5 6]
+LONG = %w[January March May July August October December]
+SHORT = %w[April June September November]
 
 class Year
+
   def initialize(year)
     @current = year
   end
@@ -24,8 +27,28 @@ class Year
   def leap?
     @current % 100 != 0 && @current % 4 == 0 || @current % 400 == 0
   end
+
+  class Month
+
+    def initialize(month)
+      @current = month
+    end
+
+    def days(year)
+      if LONG.include? @current
+        31
+      elsif SHORT.include? @current
+        30
+      elsif @current == "February"
+        year = Year.new year
+        if year.leap?
+          29
+        else
+          28
+        end
+      end
+    end
+
+  end
 end
 
-def days_in(month)
-
-end

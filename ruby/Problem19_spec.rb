@@ -32,4 +32,24 @@ describe Year do
       expect(year1.days_in).to eq 365
     end
   end
+  describe Year::Month do
+    context 'days' do
+      let(:january) { Year::Month.new "January"}
+      let(:february) { Year::Month.new "February"}
+      let(:june) { Year::Month.new "June" }
+
+      it 'returns 31 days for right months' do
+        expect(january.days(2014)).to eq 31
+      end
+      it 'returns 30 days for right months' do
+        expect(june.days(2014)).to eq 30
+      end
+      it 'returns 28 days for February in non leap year' do
+        expect(february.days(2014)).to eq 28
+      end
+      it 'returns 29 days for February in non leap year' do
+        expect(february.days(2012)).to eq 29
+      end
+    end
+  end
 end
