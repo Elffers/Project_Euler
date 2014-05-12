@@ -10,14 +10,34 @@ def mults(n)
   digits = n.to_s.chars.map { |x| x.to_i }
   mults = (1..9).reject { |x| digits.include? x }
   # keeps multipliers as string
-  mults
-
+  n = mults.length / 2
+  i = 1
+  multipliers = []
+  multiplicands = []
+  while i <= n
+    first =  mults.combination(i).flat_map { |chunk| chunk.permutation.to_a }
+    multipliers.concat first
+    second_strings = first.map { |x| x.join }.flat_map {|n| mults.join.delete n }
+    second = second_strings.map { |x| all_digit_permutations x }
+    multiplicands.concat second
+    i += 1
+  end
+  return multipliers.map {|x| x.join.to_i}, multiplicands
 end
-
 
 def combos(n)
   multipliers, multiplicands = mults(n)
   multipliers.zip(multiplicands)
+end
+
+def pandigital_identity(n)
+  combos(n).each do |pair|
+    m1, m2 = pair
+    m2.each do |m|
+      return true if m1 * m == n
+    end
+  end
+  false
 end
 
 def digits(num)
@@ -25,7 +45,23 @@ def digits(num)
 end
 
 def to_num(digit_array)
-  digit_array.map{ |x| x.to_s }.join("").to_i
+  digit_array.map{ |x| x.to_s }.join.to_i
 end
 
+def all_digit_permutations(string)
+  string.chars.permutation.to_a.flat_map { |array| array.join.to_i }
+end
+
+def find_all_pandigital_under(n)
+  (1234..n).select {|x| pandigital_identity x }
+end
+find_all_pandigital_under(9876)
+
+# [4396,
+# 5346,
+# 5796,
+# 6952,
+# 7254,
+# 7632,
+# 7852]
 
