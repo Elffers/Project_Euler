@@ -19,11 +19,11 @@
 # What is the value of the first triangle number to have over five hundred divisors?
 
 def triangle_number(n)
-  (1..n).inject{|sum, num| sum + num}
+  (1..n).reduce(:+)
 end
 
 # Returns true or false for whether x is a triangular number
-def is_triangular(x)
+def triangular?(x)
   ((Math.sqrt(8 * x + 1) -1)/2)*10 % 10 == 0
 end
 
@@ -38,8 +38,12 @@ def divisors(x)
   divisors = [1] + divisors + [x]
 end
 
-def is_perfect(x)
-  divisors(x).reduce(:+)== 2*x
+def number_of_divisors(x)
+  divisors(x).count
+end
+
+def perfect?(x)
+  divisors(x).reduce(:+) == 2*x
 end
 
 # Generates array containing the first n triangle numbers as elements
@@ -52,9 +56,11 @@ def triangles(n)
 end
 
 #forces a guess of nth triangle number
-triangles = triangles(1000)
-triangles.find_all do |x|
-  divisors(x).count >= 500
+def find_triangular_with_500_divisors(n)
+  triangles(n).each do |x|
+    return x if divisors(x).count >= 500
+  end
 end
+
 
 
