@@ -5,15 +5,15 @@ def leap?(year)
   year % 100 != 0 && year % 4 == 0 || year % 400 == 0
 end
 
-def map_leap_years(debut, fin)
-  (debut..fin).map do |year|
-    if leap? year
-      year
-    else
-      0
-    end
-  end
-end
+# def map_leap_years(debut, fin)
+#   (debut..fin).map do |year|
+#     if leap? year
+#       year
+#     else
+#       0
+#     end
+#   end
+# end
 
 def first_days(year, first_day=1)
   first_days = []
