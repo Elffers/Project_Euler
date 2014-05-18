@@ -16,28 +16,32 @@ class Pathfinder
     @lines = input.map { |line| line.chomp }.map { |nums| nums.split(/\s/).map { |x| x.to_i } }
   end
 
-  def next_max(max)
-    # This does not work if the max value is repeated earlier in the array
-    index = @lines.first.index(max)
-    @lines.shift
-    [@lines.first[index], @lines.first[index + 1]].max
+  # shift needs to happen before this is called
+  def next_max(max, index)
+    max = [@lines.first[index], @lines.first[index + 1]].max
+    index = index + 1 if @lines.first[index + 1] == max
+    return max, index
   end
 
   def max_path
     l = @lines.length
-    path = []
-    n = 0
     max = @lines.first.max
-    while n < l
+    index = @lines.first.index(max)
+    path = []
+    l.times do
       path << max
       p path
-      max = next_max(max) unless @lines.count == 1
-      n += 1
+      @lines.shift
+      max, index = next_max(max, index) unless @lines.count == 0
     end
     path
   end
 end
 
 p = Pathfinder.new(File.readlines('problem18.txt'))
+path = p.max_path
+puts path.reduce(:+)
+
+p = Pathfinder.new(File.readlines('big_triangle.txt'))
 path = p.max_path
 puts path.reduce(:+)
