@@ -10,6 +10,10 @@
 
 # What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
 
+# given a starting number, returns the corners at the nth layer of the spiral
+# e.g. corners(1, 3) should return [3, 5, 7, 9]
+# corners(9, 5) should return [13, 17, 21, 25]
+
 def corners(start, n)
   fourth = start + (n * 4 - 4)
   diff = n - 1
@@ -18,6 +22,8 @@ def corners(start, n)
   first = second - diff
   return [first, second, third, fourth]
 end
+
+# returns all numbers along diagonals for spiral with x layers
 
 def find_corners(x)
   diagonals = [1]
