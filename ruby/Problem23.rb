@@ -8,17 +8,22 @@
 
 UPPER = 28123
 
-# same as divisors, O(n)
+# O(n)
 def abundant?(x)
-  divisors(x).reduce(:+) > x
+  factors(x).reduce(:+) > x
 end
 
-# O(n)
-def divisors(x)
-  divisors = (2..x/2).select do |factor|
-    x % factor == 0
+def factors(n)
+  factors = [1]
+  s = Math.sqrt(n).floor
+  (2..s).each do |x|
+    if n % x == 0 && n/x == x
+      factors.push(x)
+    elsif n % x == 0
+      factors.push(x, n/x)
+    end
   end
-  divisors.unshift(1)
+  factors
 end
 
 # O(n**2)
@@ -51,4 +56,6 @@ def greatest_non_abundant_under(x)
   output
 end
 
-greatest_non_abundant_under(UPPER)
+ #<Benchmark::Tms:0x007fd4928d8e70 @label="", @real=185.574801, @cstime=0.0, @cutime=0.0, @stime=0.5900000000000001, @utime=183.41, @total=184.0>
+
+greatest_non_abundant_under(UPPER).reduce(:+)
