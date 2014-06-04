@@ -18,5 +18,4 @@ def digits(array)
 end
 
 d = concat(1000000).chars
-d = digits(digit_array)
-d[0] * d[9] * d[99] * d[999] * d[9999] * d[99999] * d[999999]
+d[0].to_i * d[9].to_i * d[99].to_i * d[999].to_i * d[9999].to_i * d[99999].to_i * d[999999].to_i
