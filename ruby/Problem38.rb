@@ -14,6 +14,18 @@ def concat_product(num, n)
   (1..n).map { |x| (num * x).to_s }.join
 end
 
-# could iterate down and check if it is concatproductable
-# could also build upwards
+def pandigital(num_string)
+  num_string.chars.sort == %w[1 2 3 4 5 6 7 8 9]
+end
+
+# 1 < n < 5
+
+# for n = 3, 100 <= num <= 333
+# for n = 2, 5000 <= num <= 9999
+
+def try_two
+  (5000..9999).map do |n|
+    concat_product(n, 2)
+  end.select {|cp| pandigital cp }
+end
 
