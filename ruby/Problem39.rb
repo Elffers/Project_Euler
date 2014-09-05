@@ -11,15 +11,18 @@ def generate_triples input
   end
 end
 
+# uses pythag.txt input file
 input = ARGF.each_line
 triples = generate_triples input
 
+# Creates hash of perimeters with a counter as their values
 perim = Hash.new 0
 triples.each do |triple|
   sum = triple.reduce(:+)
   perim[sum] += 1
 end
-p perim
+
+# Finds perimeter with highest count
 max = perim.values.max
 p "max", max
 p "perim", perim.key(max)
