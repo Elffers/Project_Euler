@@ -19,11 +19,16 @@ describe Pathfinder do
       expect(pathfinder.map_max line, index).to eq [10, 13, 15]
     end
 
+    it 'returns just the line for index 0' do
+      index = 0
+      line = pathfinder.lines[index]
+      expect(pathfinder.map_max line, index).to eq [2, 5, 9, 3]
+    end
   end
 
   context 'max_path' do
-    xit 'returns max' do
-      expect(pathfinder.max_path).to eq 22
+    it 'returns max' do
+      expect(pathfinder.max_path).to eq [23]
     end
   end
 

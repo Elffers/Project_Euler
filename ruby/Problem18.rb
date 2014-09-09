@@ -18,6 +18,9 @@ class Pathfinder
   end
 
   def map_max(line, index)
+    if index == 0
+      return line
+    end
     line.each_with_index.map do |num, i|
       a = @lines[index - 1][i]
       b = @lines[index - 1][i+1]
@@ -28,8 +31,10 @@ class Pathfinder
 
   def max_path
     @lines.each_with_index do |line, i|
-      @line[i] = map_max line, i
+      line = map_max line, i
+      @lines[i] = line
     end
+    @lines.last
   end
 end
 
