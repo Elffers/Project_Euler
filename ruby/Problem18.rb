@@ -13,10 +13,13 @@
 class Pathfinder
   attr_accessor :lines
 
+  # Sanitizes input file and reverses the lines for easier "bottom-up"
+  # processing.
   def initialize(input)
     @lines = input.map { |line| line.chomp }.map { |nums| nums.split(/\s/).map { |x| x.to_i } }.reverse
   end
 
+  # maps each line to maximum sum taken from "previous" line
   def map_max(line, index)
     if index == 0
       return line
@@ -29,6 +32,8 @@ class Pathfinder
     end
   end
 
+  # calls map_max on each line and resets @lines.
+  # do this recursively??
   def max_path
     @lines.each_with_index do |line, i|
       line = map_max line, i
@@ -46,4 +51,3 @@ if $0 == __FILE__
   path = p.max_path
   puts path.reduce(:+)
 end
-

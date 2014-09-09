@@ -31,5 +31,4 @@ describe Pathfinder do
       expect(pathfinder.max_path).to eq [23]
     end
   end
-
 end
