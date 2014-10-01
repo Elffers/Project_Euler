@@ -1,7 +1,6 @@
-Project_Euler
+Project Euler
 =============
 Attempts in Ruby to solve problems from http://projecteuler.net/
 
-Friend key: 44927978270590_2bd785addba0f9d9d12a55ab0a202530
-
-Add me to track my progress!
+Friend key:
+270590_f23cf789be3f1c9c72b266ffe4c2541f
