@@ -9,36 +9,40 @@ class Pathfinder
     @lines = input.map { |line| line.chomp }.map { |nums| nums.split(",").map { |x| x.to_i } }
   end
 
-  def min_path(i, j)
-    if i == 0 && j == 0
-      return [@lines[i][j], -1 ,-1]
-    end
-    sum = @lines[i][j]
-    up = @lines[i-1][j]
-    left = @lines[i][j-1]
-    output = sum + up < sum + left ? [sum + up,i-1, j] : [sum + left, i, j-1]
-    @lines[output[1]][output[2]] = output[0]
-    output
-  end
-
-  def find_path
-    sums =# intialize grid 
+  def min_path
     i = lines.length - 1
-    j = lines.length - 1
-    current = @lines[i][j]
-    while i >= 0 && j >= 0
-      current, i, j = min_path i,j
-      p current
+    j = lines.first.length - 2
+    # calculate bottom values
+    while j >= 0
+      @lines[i][j] += @lines[i][j+1]
+      j -= 1
     end
-    current
+    #  calculate right values
+    i = lines.length - 2
+    j = lines.first.length - 1
+    # set the values in @lines
+    while i >= 0
+      @lines[i][j] += @lines[i + 1][j]
+      i -= 1
+    end
+    # sets the other values in @lines
+    i = lines.length - 2
+    while i >= 0
+      j = lines.length - 2
+      while j >= 0
+        down = @lines[i+1][j]
+        right = @lines[i][j+1]
+        @lines[i][j] += [down, right].min
+        j -= 1
+      end
+      i -= 1
+    end
+    @lines.first.first
   end
 end
 
 if $0 === __FILE__
   input = File.readlines "matrix81.txt"
   pathfinder = Pathfinder.new input
-  pathfinder.lines.each {|x| p x }
-  p pathfinder.find_path
+  p pathfinder.min_path
 end
-
-#should be 427337, getting 491866 

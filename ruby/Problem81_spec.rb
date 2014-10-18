@@ -17,23 +17,16 @@ describe Pathfinder do
   end
 
   context 'min_path' do
-    it 'returns min sum and coords' do
+    it 'sets the min path from given coords' do
       i = pf.lines.length - 1
       j = pf.lines.first.length - 1
-      output  = pf.min_path(i,j)
-      expect(output).to eq [368, 4, 3]
-      a = 1
-      b = 4
-      sum, a, b  = pf.min_path(a,b)
-      output = pf.min_path(a,b)
-      expect(output).to eq [271, 0, 3]
-    end
-  end
-  
-  context 'find_path' do
-    it 'finds minimal path' do
-      expect(pf.find_path).to eq 2427
-      expect(pf2.find_path).to eq 21
+      pf.min_path
+      left = pf.lines[i][j-1]
+      up = pf.lines[i-1][j]
+      min = pf.lines[0][0]
+      expect(left).to eq 368
+      expect(up).to eq 1287
+      expect(min).to eq 2427
     end
   end
 end
